@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="container">
+	<h1>Рейтинг</h1>
+	<h4 style="margin-top:20px;">Моя позиция: {{pos}}</h4>
+	<div>
+		Категория: {{ category_name }}
+		<br><br>
+		<div class="dropdown">
+		  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+		    Выбрать категорию
+		  </button>
+		  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+		  		<li><a class="dropdown-item" href="/rating/">Нет</a></li>
+				{% for cat in category %}
+				<li><a class="dropdown-item" href="/rating/?c={{cat.id}}">{{cat.name}}</a></li>
+				{% endfor %}
+		  </ul>
+		</div>
+		
+
+	</div>
+	
+	<table class="table">
+	  <thead class="thead-light">
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">User</th>
+	      <th scope="col">Задач решено</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% for user in rating %}
+	    <tr>
+	      <th scope="row">{{ user.pos }}</th>
+	      <td>{{ user.user }}</td>
+	      <td>{{ user.count}}</td>
+	    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+	
+</div>
+
+{% endblock %}
